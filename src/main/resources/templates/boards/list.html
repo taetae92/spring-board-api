@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns xmlns:th="http://www.w3.org/1999/xhtml" : th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>게시판 리스트</title>
+</head>
+<script>
+    function fnAddForm(){
+        location.href="/bbs/add"
+    }
+</script>
+<body>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <th>게시글 번호</th>
+        <th>게시글 이름</th>
+        <th>게시글 내용</th>
+        <th>작성자 번호</th>
+        <th>사용 여부</th>
+        </thead>
+        <tbody>
+        <tr th:each="list :${list}" th:onclick="'location.href = \'' + @{/bbs/one(bbsSeq=${list?.bbsSeq})} + '\''">
+            <td>[[${list?.bbsSeq}]]</td>
+            <td>[[${list?.sj}]]</td>
+            <td>[[${list?.cn}]]</td>
+            <td>[[${list?.userNo}]]</td>
+            <td>[[${list?.useYn}]]</td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="submit" onclick="fnAddForm()">게시글 생성</button>
+</div>
+</body>
+</html>

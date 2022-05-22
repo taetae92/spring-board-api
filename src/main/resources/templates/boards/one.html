@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns xmlns:th="http://www.w3.org/1999/xhtml" : th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>게시판 리스트</title>
+</head>
+<script>
+</script>
+<body>
+<div class="container">
+    <form th:action="@{update}" method="post">
+        <input type="hidden" name="id" th:value="${view?.id}">
+        <input type="hidden" name="bbsSeq" th:value="${view?.bbsSeq}">
+        <table class="table table-hover">
+            <tr>
+                <th>게시글 번호</th>
+                <td>[[${view?.id}]]</td>
+            </tr>
+            <tr>
+                <th>게시글 이름</th>
+                <td><input type="text" class="form-control" name="sj" th:value="${view?.sj}"></td>
+            </tr>
+            <tr>
+                <th>게시글 내용</th>
+                <td><textarea class="form-control" name="cn" th:text="${view?.cn}"></textarea></td>
+            </tr>
+            <tr>A
+                <th>작성자 번호</th>
+                <td>[[${view?.userNo}]]</td>
+            </tr>
+        </table>
+        <button type="submit">수정</button>
+    </form>
+    <form th:action="@{delete}" method="post">
+        <input type="hidden" name="bbsSeq" th:value="${view?.bbsSeq}">
+        <button type="submit">삭제</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns xmlns:th="http://www.w3.org/1999/xhtml" : th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>게시판 리스트</title>
+</head>
+<script>
+
+</script>
+<body>
+<div class="container">
+    <form name="addForm" th:action="@{insert}" method="post">
+        <input type="hidden" name="id" th:value="1">
+        <input type="hidden" name="code" th:value="A0001">
+        <table class="table table-hover">
+            <tr>
+                <th>게시글 이름</th>
+                <td><input type="text" class="form-control" name="sj"></td>
+            </tr>
+            <tr>
+                <th>게시글 내용</th>
+                <td><textarea class="form-control" name="cn"></textarea></td>
+            </tr>
+        </table>
+        <button type="submit">등록</button>
+    </form>
+</div>
+</body>
+</html>

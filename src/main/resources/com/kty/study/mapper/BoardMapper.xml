@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kty.study.mapper.BoardMapper">
+    <select id="boardCount" resultType="int">
+        SELECT COUNT(bbs_id) AS CNT
+        FROM STUDY_DB.TB_BBS_MANAGE;
+    </select>
+
+    <select id="boardList" resultType="com.kty.study.domain.Board">
+        SELECT bbs_id as id
+              ,bbs_code as code
+              ,bbs_nm as name
+              ,register_no as userNo
+        FROM   STUDY_DB.TB_BBS_MANAGE;
+    </select>
+
+</mapper>

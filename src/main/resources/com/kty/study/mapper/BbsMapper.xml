@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kty.study.mapper.BbsMapper">
+    <select id="bbsCount" resultType="int">
+        SELECT COUNT(bbs_id) AS CNT
+        FROM STUDY_DB.TB_BBS
+        WHERE bbs_id = #{id};
+    </select>
+
+    <select id="bbsList" resultType="com.kty.study.domain.Bbs">
+        SELECT bbs_id as id
+             ,bbs_seq as bbsSeq
+             ,bbs_code as code
+             ,sj
+             ,cn
+             ,register_no as userNo
+             ,case when use_yn='Y' then '사용'
+                   else '미사용'
+                end as useYn
+        FROM   STUDY_DB.TB_BBS
+        WHERE bbs_id = #{id};
+    </select>
+
+    <select id="bbsInfo" parameterType="Long" resultType="com.kty.study.domain.Bbs">
+        SELECT bbs_id as id
+             , bbs_seq as bbsSeq
+             ,bbs_code as code
+             ,sj
+             ,cn
+             ,register_no as userNo
+             ,case when use_yn='Y' then '사용'
+                   else '미사용'
+            end as useYn
+        FROM   STUDY_DB.TB_BBS
+        WHERE bbs_seq = #{bbsSeq};
+    </select>
+
+    <insert id="insertBbs" parameterType="com.kty.study.domain.Bbs">
+        INSERT INTO STUDY_DB.TB_BBS
+            (
+             bbs_code
+            ,sj
+            ,cn
+            ,register_no
+            ,regist_dt
+            ,bbs_id
+            ,use_yn
+            )
+        VALUES
+            (
+             #{code}
+             ,#{sj}
+             ,#{cn}
+             ,'1'
+             ,NOW()
+             ,#{id}
+             ,'Y'
+            )
+    </insert>
+
+    <update id="updateBbs" parameterType="com.kty.study.domain.Bbs">
+        UPDATE STUDY_DB.TB_BBS
+        SET    sj = #{sj}
+              ,cn = #{cn}
+        WHERE  bbs_seq = #{bbsSeq}
+    </update>
+
+    <update id="deleteBbs" parameterType="com.kty.study.domain.Bbs">
+        UPDATE STUDY_DB.TB_BBS
+        SET    use_yn = 'N'
+        WHERE  bbs_seq = #{bbsSeq}
+    </update>
+
+</mapper>
